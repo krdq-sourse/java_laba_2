@@ -1,3 +1,3 @@
 # practice-2-java
 
-Second java lab
+Второя раборатораня работа по Java
