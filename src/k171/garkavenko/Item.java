@@ -1,10 +1,20 @@
 package k171.garkavenko;
 
+/**
+ * Класс Товара
+ */
 public class Item {
 
+    // название товара
     public String name;
+    // цена товара
     public float price;
 
+    /**
+     * Конструктор класса
+     * @param name название товара
+     * @param price цена товара
+     */
     public Item(String name, float price){
 
         boolean priceLowerThan0 = price < 0;
@@ -19,6 +29,10 @@ public class Item {
         this.price = price;
     }
 
+    /**
+     * увелеичение цены
+     * @param percent процент
+     */
     public void increasePrice(float percent){
         float PERCENT_COEFFICIENT = 0.01f;
 
@@ -27,6 +41,10 @@ public class Item {
         this.price = increasedPrice;
     }
 
+    /**
+     * уменьшение цены
+     * @param percent процент
+     */
     public void decreasePrice(float percent){
         float PERCENT_COEFFICIENT = 0.01f;
 

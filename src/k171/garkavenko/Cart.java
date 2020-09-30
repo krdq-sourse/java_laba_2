@@ -2,37 +2,58 @@ package k171.garkavenko;
 
 import java.util.Stack;
 
+/**
+ * Класс коризины
+ *
+ * @author Гаркавенко Денис
+ * @version 1.0
+ */
 public class Cart {
-
     private Stack<Item> container = new Stack<Item>();
     private float generalCartPrice = 0;
     private int size;
 
-    public Cart(int size){
+    /**
+     * Конструктор класса Cart
+     *
+     * @param size размер
+     */
+    public Cart(int size) {
         this.size = size;
     }
 
-    public void addItem(Item toAdd){
+    /**
+     * Метод добавляет продукт в корзина
+     *
+     * @param toAdd обьект типа Item
+     */
+    public void addItem(Item toAdd) {
         boolean cartNotFull = this.container.size() != this.size;
 
-        if(cartNotFull) this.container.push(toAdd);
+        if (cartNotFull) this.container.push(toAdd);
 
     }
 
-    public void deleteItem(){
+    /**
+     * Удалаят последний елемент в корзине
+     */
+    public void deleteItem() {
         boolean cartNotEmpty = this.container.size() != 0;
 
         if (cartNotEmpty) this.container.pop();
     }
 
-    public void recalculateCartPrice(){
+    /**
+     * Пресцитываец цены
+     */
+    public void recalculateCartPrice() {
         this.generalCartPrice = 0;
 
         Stack<Item> copyStack = (Stack<Item>) this.container.clone();
 
         int itemsInCart = this.container.size();
 
-        for (int i = 0; i < itemsInCart; i++){
+        for (int i = 0; i < itemsInCart; i++) {
 
             Item current = copyStack.pop();
             this.generalCartPrice += current.price;
@@ -40,12 +61,17 @@ public class Cart {
     }
 
 
-    public void increaseSum(float percent){
+    /**
+     * увеличивает сумму на опрееденные процент
+     *
+     * @param percent процент, на который увелисчиваеться сумма
+     */
+    public void increaseSum(float percent) {
         Stack<Item> copyStack = (Stack<Item>) container.clone();
         Stack<Item> middleStack = new Stack<Item>();
         Stack<Item> finalStack = new Stack<Item>();
 
-        for(int i = 0; i < container.size(); i++){
+        for (int i = 0; i < container.size(); i++) {
             Item current = copyStack.pop();
 
             current.increasePrice(percent);
@@ -54,7 +80,7 @@ public class Cart {
 
         }
 
-        for(int i = 0; i < container.size(); i++){
+        for (int i = 0; i < container.size(); i++) {
             Item current = middleStack.pop();
 
             finalStack.push(current);
@@ -66,12 +92,17 @@ public class Cart {
 
     }
 
-    public void decreaseSum(float percent){
+    /**
+     * уменьшает сумму на опрееденные процент
+     *
+     * @param percent процент, на который упеньшаеться сумма
+     */
+    public void decreaseSum(float percent) {
         Stack<Item> copyStack = (Stack<Item>) container.clone();
         Stack<Item> middleStack = new Stack<Item>();
         Stack<Item> finalStack = new Stack<Item>();
 
-        for(int i = 0; i < container.size(); i++){
+        for (int i = 0; i < container.size(); i++) {
             Item current = copyStack.pop();
 
             current.decreasePrice(percent);
@@ -80,7 +111,7 @@ public class Cart {
 
         }
 
-        for(int i = 0; i < container.size(); i++){
+        for (int i = 0; i < container.size(); i++) {
             Item current = middleStack.pop();
 
             finalStack.push(current);
@@ -90,7 +121,10 @@ public class Cart {
 
     }
 
-    public void showPrice(){
+    /**
+     * выводит сумму твовара в корзине
+     */
+    public void showPrice() {
         System.out.println(this.generalCartPrice);
     }
 
